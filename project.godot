@@ -1,0 +1,112 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "StratagemReceiver",
+"class": "ClockControl",
+"language": "GDScript",
+"path": "res://Scripts/clock_control.gd"
+}, {
+"base": "Label",
+"class": "ClockLabel",
+"language": "GDScript",
+"path": "res://Scripts/clock_label.gd"
+}, {
+"base": "Reference",
+"class": "FileHelper",
+"language": "GDScript",
+"path": "res://Scripts/file_helper.gd"
+}, {
+"base": "StratagemReceiver",
+"class": "Lookup",
+"language": "GDScript",
+"path": "res://Scripts/lookup.gd"
+}, {
+"base": "Resource",
+"class": "Stratagem",
+"language": "GDScript",
+"path": "res://Scripts/stratagem.gd"
+}, {
+"base": "StratagemReceiver",
+"class": "StratagemHero",
+"language": "GDScript",
+"path": "res://Scripts/stratagem_hero.gd"
+}, {
+"base": "StratagemReceiver",
+"class": "StratagemInput",
+"language": "GDScript",
+"path": "res://Scripts/stratagem_input.gd"
+}, {
+"base": "Control",
+"class": "StratagemLoader",
+"language": "GDScript",
+"path": "res://Scripts/stratagem_loader.gd"
+}, {
+"base": "Panel",
+"class": "StratagemPanel",
+"language": "GDScript",
+"path": "res://Scripts/stratagem_panel.gd"
+}, {
+"base": "Control",
+"class": "StratagemReceiver",
+"language": "GDScript",
+"path": "res://Scripts/stratagem_receiver.gd"
+} ]
+_global_script_class_icons={
+"ClockControl": "",
+"ClockLabel": "",
+"FileHelper": "",
+"Lookup": "",
+"Stratagem": "",
+"StratagemHero": "",
+"StratagemInput": "",
+"StratagemLoader": "",
+"StratagemPanel": "",
+"StratagemReceiver": ""
+}
+
+[application]
+
+config/name="TacpadOS"
+run/main_scene="res://Scenes/stratagem_loader.tscn"
+boot_splash/show_image=false
+config/icon="res://icon.png"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/sc_editor/plugin.cfg" )
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[input]
+
+touch={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+vram_compression/import_etc=true
+vram_compression/import_etc2=false
+quality/filters/use_nearest_mipmap_filter=true
+environment/default_environment="res://default_env.tres"

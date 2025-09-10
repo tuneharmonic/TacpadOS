@@ -1,0 +1,29 @@
+# Godot specific
+.import/
+.mono/
+.godot/ # For Godot 4+ projects, this replaces .import/
+export_presets.cfg # Contains sensitive export credentials
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Build artifacts
+Builds/
+*.exe
+*.pck
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Local settings
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Emacs backup files (if applicable)
+*~

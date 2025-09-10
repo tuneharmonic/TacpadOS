@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/stratagem.gd" type="Script" id=1]
+[ext_resource path="res://Textures/Stratagems/Support/GuardDogK9.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "AX/ARC-3 \"Guard Dog\" K-9"
+icon = ExtResource( 2 )
+code = [ 3, 1, 4, 1, 2, 4 ]

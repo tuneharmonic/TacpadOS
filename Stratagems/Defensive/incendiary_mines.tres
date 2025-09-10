@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/stratagem.gd" type="Script" id=1]
+[ext_resource path="res://Textures/Stratagems/Defensive/IncendiaryMines.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "MD-I4 Incendiary Mines"
+icon = ExtResource( 2 )
+code = [ 3, 4, 4, 3 ]

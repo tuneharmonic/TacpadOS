@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Textures/Stratagems/Orbital/OrbitalWalking.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/stratagem.gd" type="Script" id=2]
+
+[resource]
+script = ExtResource( 2 )
+name = "Orbital Walking Barrage"
+icon = ExtResource( 1 )
+code = [ 2, 3, 2, 3, 2, 3 ]

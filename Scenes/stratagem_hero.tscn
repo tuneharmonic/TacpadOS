@@ -1,0 +1,414 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Textures/Arrows/Up_Arrow.png" type="Texture" id=1]
+[ext_resource path="res://Textures/Stratagems/Eagle/Eagle500kgBomb.png" type="Texture" id=2]
+[ext_resource path="res://Textures/Arrows/Right_Arrow.png" type="Texture" id=3]
+[ext_resource path="res://Textures/Arrows/Down_Arrow.png" type="Texture" id=4]
+[ext_resource path="res://Textures/Arrows/Left_Arrow.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/stratagem_hero.gd" type="Script" id=6]
+[ext_resource path="res://Fonts/Quantico-Regular.otf" type="DynamicFontData" id=7]
+[ext_resource path="res://Scenes/stratagem_arrow.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Sounds/ready.wav" type="AudioStream" id=9]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.0392157, 0.0392157, 0.0392157, 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 24
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 24
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 32
+font_data = ExtResource( 7 )
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("StratagemPanel/StratagemReadout:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ScoreScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "new_round"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("RoundScreen:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("GetReadyScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("StratagemPanel/SfxPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+} ],
+"times": PoolRealArray( 2 )
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "show_game_over_screen"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("GameOverScreen:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "show_score_screen"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("ScoreScreen:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("RoundScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GetReadyScreen:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "wrong_flash"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("StratagemPanel/StratagemReadout:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 6 )
+
+[node name="StratagemPanel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="StratagemIcon" type="TextureRect" parent="StratagemPanel"]
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.4
+anchor_bottom = 0.4
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+
+[node name="StratagemLabel" type="Label" parent="StratagemPanel"]
+anchor_left = 0.15
+anchor_top = 0.45
+anchor_right = 0.45
+anchor_bottom = 0.55
+custom_fonts/font = SubResource( 2 )
+text = "RL-77 Airburst Rocket Launcher"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Control" type="Control" parent="StratagemPanel"]
+anchor_left = 0.5
+anchor_top = 0.1
+anchor_right = 1.0
+anchor_bottom = 0.9
+
+[node name="UpButton" type="Button" parent="StratagemPanel/Control"]
+anchor_left = 0.33
+anchor_right = 0.66
+anchor_bottom = 0.33
+grow_horizontal = 2
+focus_mode = 0
+action_mode = 0
+icon = ExtResource( 1 )
+flat = true
+icon_align = 1
+expand_icon = true
+
+[node name="DownButton" type="Button" parent="StratagemPanel/Control"]
+anchor_left = 0.33
+anchor_top = 0.66
+anchor_right = 0.66
+anchor_bottom = 1.0
+grow_horizontal = 2
+focus_mode = 0
+action_mode = 0
+icon = ExtResource( 4 )
+flat = true
+icon_align = 1
+expand_icon = true
+
+[node name="LeftButton" type="Button" parent="StratagemPanel/Control"]
+anchor_top = 0.33
+anchor_right = 0.33
+anchor_bottom = 0.66
+grow_horizontal = 2
+focus_mode = 0
+action_mode = 0
+icon = ExtResource( 5 )
+flat = true
+icon_align = 1
+expand_icon = true
+
+[node name="RightButton" type="Button" parent="StratagemPanel/Control"]
+anchor_left = 0.66
+anchor_top = 0.33
+anchor_right = 1.0
+anchor_bottom = 0.66
+grow_horizontal = 2
+focus_mode = 0
+action_mode = 0
+icon = ExtResource( 3 )
+flat = true
+icon_align = 1
+expand_icon = true
+
+[node name="StratagemReadout" type="HBoxContainer" parent="StratagemPanel"]
+anchor_left = 0.1
+anchor_top = 0.65
+anchor_right = 0.5
+anchor_bottom = 0.748
+alignment = 1
+
+[node name="TextureRect" parent="StratagemPanel/StratagemReadout" instance=ExtResource( 8 )]
+
+[node name="TextureRect2" type="TextureRect" parent="StratagemPanel/StratagemReadout"]
+margin_left = 146.0
+margin_right = 182.0
+margin_bottom = 58.0
+texture = ExtResource( 3 )
+stretch_mode = 6
+
+[node name="TextureRect3" type="TextureRect" parent="StratagemPanel/StratagemReadout"]
+margin_left = 186.0
+margin_right = 222.0
+margin_bottom = 58.0
+texture = ExtResource( 4 )
+stretch_mode = 6
+
+[node name="TextureRect4" type="TextureRect" parent="StratagemPanel/StratagemReadout"]
+margin_left = 226.0
+margin_right = 262.0
+margin_bottom = 58.0
+texture = ExtResource( 4 )
+stretch_mode = 6
+
+[node name="TextureRect5" type="TextureRect" parent="StratagemPanel/StratagemReadout"]
+margin_left = 266.0
+margin_right = 302.0
+margin_bottom = 58.0
+texture = ExtResource( 4 )
+stretch_mode = 6
+
+[node name="BackButton" type="Button" parent="StratagemPanel"]
+anchor_left = 0.85
+anchor_top = 0.85
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+focus_mode = 0
+custom_fonts/font = SubResource( 4 )
+text = "Back"
+
+[node name="SfxPlayer" type="AudioStreamPlayer" parent="StratagemPanel"]
+
+[node name="BgmPlayer" type="AudioStreamPlayer" parent="StratagemPanel"]
+
+[node name="TimeBarBg" type="ColorRect" parent="StratagemPanel"]
+anchor_left = 0.1
+anchor_top = 0.75
+anchor_right = 0.5
+anchor_bottom = 0.8
+color = Color( 0.231373, 0.231373, 0.231373, 1 )
+
+[node name="TimeBarContainer" type="Control" parent="StratagemPanel/TimeBarBg"]
+anchor_left = 0.01
+anchor_top = 0.1
+anchor_right = 0.99
+anchor_bottom = 0.9
+
+[node name="TimeBar" type="ColorRect" parent="StratagemPanel/TimeBarBg/TimeBarContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.839216, 0.843137, 0.839216, 1 )
+
+[node name="Timer" type="Timer" parent="StratagemPanel"]
+one_shot = true
+
+[node name="GameOverScreen" type="Panel" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="Label" type="Label" parent="GameOverScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 5 )
+text = "Round Reached: 7
+Score: 7123
+New High Score!"
+align = 1
+valign = 1
+
+[node name="GetReadyScreen" type="Panel" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="Label" type="Label" parent="GetReadyScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 5 )
+text = "Get Ready..."
+align = 1
+valign = 1
+
+[node name="RoundScreen" type="Panel" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="Label" type="Label" parent="RoundScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 5 )
+text = "Round 1"
+align = 1
+valign = 1
+
+[node name="ScoreScreen" type="Panel" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="Label" type="Label" parent="ScoreScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 5 )
+text = "Score: 1000"
+align = 1
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 6 )
+anims/new_round = SubResource( 7 )
+anims/show_game_over_screen = SubResource( 9 )
+anims/show_score_screen = SubResource( 10 )
+anims/wrong_flash = SubResource( 8 )
+
+[connection signal="pressed" from="StratagemPanel/Control/UpButton" to="." method="_on_up_button_pressed"]
+[connection signal="pressed" from="StratagemPanel/Control/DownButton" to="." method="_on_down_button_pressed"]
+[connection signal="pressed" from="StratagemPanel/Control/LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="StratagemPanel/Control/RightButton" to="." method="_on_right_button_pressed"]
+[connection signal="pressed" from="StratagemPanel/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="timeout" from="StratagemPanel/Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]

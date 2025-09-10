@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/finalkey.mp3-74cb3fe8d0346651a9ffd8e4f83f4f23.mp3str"
+
+[deps]
+
+source_file="res://Sounds/finalkey.mp3"
+dest_files=[ "res://.import/finalkey.mp3-74cb3fe8d0346651a9ffd8e4f83f4f23.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
