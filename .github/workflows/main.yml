@@ -31,10 +31,12 @@ jobs:
       uses: android-actions/setup-android@v3.2.2
     
     - name: setup debug keystore
-      run: keytool -genkey -v -keystore ${{ github.workspace }}/debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
+      run: |
+        mkdir -p ~/.android
+        keytool -genkey -v -keystore ~/.android/debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
     
     - name: verify debug keystore
-      run: keytool -list -v -keystore ${{ github.workspace }}/debug.keystore -alias androiddebugkey -storepass android
+      run: keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android
     
     - name: copy editor settings
       run: |
@@ -53,6 +55,7 @@ jobs:
         relative_project_path: ./
         archive_output: true
         use_godot_3: true
+        export_debug: true
     
       # This release action has worked well for me. However, you can most likely use any release action of your choosing.
       # https://github.com/ncipollo/release-action
